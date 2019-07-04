@@ -4,6 +4,13 @@
     "slug": "caffeine-counter",
     "privacy": "public",
     "sdkVersion": "33.0.0",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nmvason.caffeinecounter"
+    },
+    "android": {
+      "package": "com.nmvason.caffeinecounter"
+    },
     "platforms": [
       "ios",
       "android",
@@ -22,9 +29,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    ]
   }
 }

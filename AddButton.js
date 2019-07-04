@@ -2,6 +2,7 @@ import  React, { Component } from 'react';
 import { StyleSheet, View, AsyncStorage } from 'react-native';
 import { Text, Icon, Overlay } from 'react-native-elements';
 import ProgressCircle from 'react-native-progress-circle';
+import ActionButton from 'react-native-action-button';
 
 export default class AddButton extends React.Component {
     state = {
@@ -55,7 +56,7 @@ export default class AddButton extends React.Component {
             <View style={styles.container}>
                 <ProgressCircle
                     percent={this.state.total/2}
-                    radius={100}
+                    radius={130}
                     borderWidth={15}
                     color="#3399FF"
                     shadowColor="#999"
@@ -63,47 +64,26 @@ export default class AddButton extends React.Component {
                 >
                     <Text style={{ fontSize: 18 }}>{this.state.total} mg</Text>
                 </ProgressCircle>
-                <Icon
-                    raised
-                    reverse
-                    name='plus'
-                    type='font-awesome'
-                    color='#841584'
-                    onPress={this.displayOptions}
-                    style={styles.addButton} />
-                <Overlay
-                    isVisible={this.state.isVisible}
-                    onBackdropPress={this.hideOptions}
-                    width="auto"
-                    height="auto"
-                >
-                    <View style={styles.modal}>
-                        <Text h4>Whatchia drinkin'?</Text>
-                        <View style={styles.buttonGroup}>
-                            <Icon
-                                raised
-                                reverse
-                                name='coffee'
-                                type='material-community'
-                                color='brown'
-                                onPress={() => this.addToTotal(95)} />
-                            <Icon
-                                raised
-                                reverse
-                                name='tea'
-                                type='material-community'
-                                color='green'
-                                onPress={() => this.addToTotal(30)} />
-                            <Icon
-                                raised
-                                reverse
-                                name='cup'
-                                type='material-community'
-                                color='red'
-                                onPress={() => this.addToTotal(32)} />
-                        </View>
-                    </View>
-                </Overlay>
+                <ActionButton buttonColor="rgba(231,76,60,1)">
+                    <ActionButton.Item 
+                        buttonColor='#9b59b6' 
+                        title="8oz coffee" 
+                        onPress={() => this.addToTotal(95)}>
+                        <Icon name="coffee" type='material-community' style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                    <ActionButton.Item 
+                        buttonColor='#3498db' 
+                        title="1 bag of green tea" 
+                        onPress={() => this.addToTotal(30)}>
+                        <Icon name='tea' type='material-community' />
+                    </ActionButton.Item>
+                    <ActionButton.Item 
+                        buttonColor='#1abc9c' 
+                        title="Diet Coke" 
+                        onPress={() => this.addToTotal(32)}>
+                        <Icon name="cup" type='material-community' style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                </ActionButton>
             </View>
         )
     }
@@ -112,22 +92,12 @@ export default class AddButton extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 36
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
-    addButton: {
-        alignSelf: 'center'
-    },
-    modal: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-    },
-    buttonGroup: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly'
+    actionButtonIcon: {
+      fontSize: 20,
+      height: 22,
+      color: 'white'
     }
   });

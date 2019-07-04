@@ -1,5 +1,5 @@
 import  React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, AsyncStorage } from 'react-native';
 import { Text, Icon, Overlay } from 'react-native-elements'
 
 export default class AddButton extends React.Component {
@@ -8,8 +8,21 @@ export default class AddButton extends React.Component {
         isVisible: false
     }
 
+    constructor(props) {
+        super(props)
+
+        AsyncStorage
+            .getItem('total')
+            .then((savedTotal) => {
+                var parsedTotal = parseInt(savedTotal) || 0;
+                this.setState({total: parsedTotal});
+            });
+    }
+
     addToTotal = (amount) => {
         var currentSum = this.state.total
+
+        AsyncStorage.setItem('total', currentSum.toString());
     
         this.setState({total: currentSum + amount})
     }

@@ -1,2 +1,2 @@
 # caffeine-counter
-Simple caffein tracker (coffee, tea, diet coke)
+Simple caffeine tracker (coffee, tea, diet coke)

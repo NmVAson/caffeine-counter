@@ -1,6 +1,7 @@
 import  React, { Component } from 'react';
 import { StyleSheet, View, AsyncStorage } from 'react-native';
-import { Text, Icon, Overlay } from 'react-native-elements'
+import { Text, Icon, Overlay } from 'react-native-elements';
+import ProgressCircle from 'react-native-progress-circle';
 
 export default class AddButton extends React.Component {
     state = {
@@ -52,7 +53,16 @@ export default class AddButton extends React.Component {
     render(){
         return (
             <View style={styles.container}>
-                <Text h3>{this.state.total} / 200 mg</Text>
+                <ProgressCircle
+                    percent={this.state.total/2}
+                    radius={100}
+                    borderWidth={15}
+                    color="#3399FF"
+                    shadowColor="#999"
+                    bgColor="#fff"
+                >
+                    <Text style={{ fontSize: 18 }}>{this.state.total} mg</Text>
+                </ProgressCircle>
                 <Icon
                     raised
                     reverse

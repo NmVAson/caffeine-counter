@@ -17,14 +17,28 @@ export default class AddButton extends React.Component {
                 var parsedTotal = parseInt(savedTotal) || 0;
                 this.setState({total: parsedTotal});
             });
+
+        AsyncStorage
+            .getItem('today')
+            .then((lastDateLogged) => {
+                let today = new Date().toLocaleDateString()
+                
+                if (lastDateLogged && lastDateLogged != today) {
+                    this.setState({total: 0});
+                }
+            });
     }
 
     addToTotal = (amount) => {
-        var currentSum = this.state.total
+        let newTotal = this.state.total + amount
+        let today = new Date()
 
-        AsyncStorage.setItem('total', currentSum.toString());
+        AsyncStorage.multiSet([
+            ['today', today.toLocaleDateString()], 
+            ['total', newTotal.toString()]
+        ]);
     
-        this.setState({total: currentSum + amount})
+        this.setState({total: newTotal})
     }
 
     displayOptions = () => {

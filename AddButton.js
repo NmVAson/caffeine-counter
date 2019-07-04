@@ -15,7 +15,6 @@ export default class AddButton extends React.Component {
     }
 
     displayOptions = () => {
-        console.log("click")
         this.setState({ isVisible: true });
     }
 
@@ -25,7 +24,7 @@ export default class AddButton extends React.Component {
 
     render(){
         return (
-            <View>
+            <View style={styles.container}>
                 <Text h3>{this.state.total} / 200 mg</Text>
                 <Icon
                     raised
@@ -33,15 +32,16 @@ export default class AddButton extends React.Component {
                     name='plus'
                     type='font-awesome'
                     color='#841584'
-                    onPress={this.displayOptions} />
+                    onPress={this.displayOptions}
+                    style={styles.addButton} />
                 <Overlay
                     isVisible={this.state.isVisible}
                     onBackdropPress={this.hideOptions}
                     width="auto"
                     height="auto"
                 >
-                    <View style={styles.container}>
-                        <Text h2>Whatchia drinkin'?</Text>
+                    <View style={styles.modal}>
+                        <Text h4>Whatchia drinkin'?</Text>
                         <View style={styles.buttonGroup}>
                             <Icon
                                 raised
@@ -74,7 +74,19 @@ export default class AddButton extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      alignItems: 'center'
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 36
+    },
+    addButton: {
+        alignSelf: 'center'
+    },
+    modal: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     buttonGroup: {
         display: 'flex',
